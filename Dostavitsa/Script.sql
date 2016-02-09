@@ -29,8 +29,6 @@ CREATE TABLE `floor_stairs` (
    FOREIGN KEY (`id_stairs`) REFERENCES stairs(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Floor/Stairs';
 
-select * from floor
-
 INSERT INTO `floor_stairs` (id_stairs, id_floor) VALUES (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (3, 1), (3, 2), (4, 1), (5, 1), (5, 2)
 
 -- query
