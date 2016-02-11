@@ -2,6 +2,8 @@
 
 namespace routes;
 
+use sys\controllers;
+
 class Route
 {
     private static $url;
@@ -22,7 +24,15 @@ class Route
         self::$method = !empty($url[2]) ? $url[2] : self::$method;
     }
 
-    private function set($pattern, $action)
+    /**
+     * Provide set new router functionality
+     *
+     * @param $pattern
+     * @param $action
+     *
+     * @author Kondratenko Alexander (Xander)
+     */
+    public function set($pattern, $action)
     {
         $pattern = '/^' . str_replace('/', '\/', $pattern) . '$/';
         self::$routes[$pattern] = $action;
@@ -47,15 +57,27 @@ class Route
         }
 
         // default routes
-        $controller = strtolower(self::$controller) . '.php';
+        $_controller = self::$controller . '.php';
 
-        if (file_exists($controller))
+        if (file_exists(CONTROLLERSPATH . $_controller))
         {
-            require_once CONTROLLERSPATH . $controller;
+            require_once CONTROLLERSPATH . $_controller;
 
-            if (method_exists($controller, $method = self::$method))
+            var_dump(self::$controller())
+
+            if (method_exists($object = new controllers\self::$controller(), $method = self::$method))
             {
-                return $controller->$method();
+                return $object->$method();
+            }
+        }
+        elseif (file_exists(SYSTEMPATH . $_controller))
+        {
+            require_once SYSTEMPATH . $_controller;
+
+            // TODO: fix namespace
+            if (method_exists($object = new \sys\controllers\Controller(), $method = self::$method))
+            {
+                return $object->$method();
             }
         }
 

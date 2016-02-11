@@ -1,7 +1,10 @@
 <?php
 
-require_once 'system/Route.php';
+require_once 'system/Autoload.php';
 
-use routes;
+// init autoload
+spl_autoload_register('autoload\Autoload::load_class');
 
+// init routing
 routes\Route::init();
+
