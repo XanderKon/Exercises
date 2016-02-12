@@ -6,7 +6,7 @@
  * Time: 0:10
  */
 
-namespace sys\controllers;
+namespace sys_controllers;
 use views;
 
 class Controller
@@ -14,13 +14,21 @@ class Controller
     public $model;
     public $view;
 
+    public $get;
+    public $post;
+
     function __construct()
     {
+        // init View
         $this->view = new views\View();
+
+        // init GET & POST data
+        $this->get = $_GET;
+        $this->post = $_POST;
     }
 
     function index()
     {
-        echo 'Hello World';
+        echo 'This is default controller';
     }
 }

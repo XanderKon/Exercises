@@ -1,26 +1,42 @@
 <?php
 
+/**
+ * SIMPLE ROUTER CLASS
+ *
+ * @author Kondratenko Alexander (Xander)
+ */
 namespace routes;
 
-use sys\controllers;
+use sys_controllers;
+use controllers;
 
-class Route
+class Route extends sys_controllers\Controller
 {
     private static $url;
-    private static $controller = 'Controller';
+    private static $controller = 'controllers\Index';
     private static $method = 'index';
-
+    private static $params = array();
     private static $routes = array();
 
+    /**
+     * Define some stuff vars
+     *
+     * @author Kondratenko Alexander (Xander)
+     */
     private static function define_vars()
     {
         self::$url = $_SERVER['REQUEST_URI'];
 
+        if (!empty($params = parse_url(self::$url)['query']))
+        {
+            parse_str($params, self::$params);
+        }
+
         // parse url
-        $url = explode('/', self::$url);
+        $url = explode('/', parse_url(self::$url)['path']);
 
         // define controller & method
-        self::$controller = !empty($url[1]) ? $url[1] : self::$controller;
+        self::$controller = !empty($url[1]) ? 'controllers\\' . $url[1] : self::$controller;
         self::$method = !empty($url[2]) ? $url[2] : self::$method;
     }
 
@@ -32,7 +48,7 @@ class Route
      *
      * @author Kondratenko Alexander (Xander)
      */
-    public function set($pattern, $action)
+    public static function set($pattern, $action)
     {
         $pattern = '/^' . str_replace('/', '\/', $pattern) . '$/';
         self::$routes[$pattern] = $action;
@@ -57,28 +73,9 @@ class Route
         }
 
         // default routes
-        $_controller = self::$controller . '.php';
-
-        if (file_exists(CONTROLLERSPATH . $_controller))
+        if (class_exists(self::$controller))
         {
-            require_once CONTROLLERSPATH . $_controller;
-
-            var_dump(self::$controller())
-
-            if (method_exists($object = new controllers\self::$controller(), $method = self::$method))
-            {
-                return $object->$method();
-            }
-        }
-        elseif (file_exists(SYSTEMPATH . $_controller))
-        {
-            require_once SYSTEMPATH . $_controller;
-
-            // TODO: fix namespace
-            if (method_exists($object = new \sys\controllers\Controller(), $method = self::$method))
-            {
-                return $object->$method();
-            }
+            return call_user_func_array(array(new self::$controller(), self::$method), self::$params);
         }
 
         return self::return_404();

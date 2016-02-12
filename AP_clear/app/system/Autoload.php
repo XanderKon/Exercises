@@ -21,8 +21,6 @@ class Autoload
     {
         $path = explode('\\', $class_name);
 
-        //var_dump($path);
-
         if (empty($path[1]))
         {
             return FALSE;
@@ -30,7 +28,7 @@ class Autoload
 
         $_final_class = $path[1] . '.php';
 
-        if (file_exists(SYSTEMPATH . $_final_class))
+        if (file_exists(SYSTEMPATH . $_final_class) || file_exists(CONTROLLERSPATH . $_final_class) || file_exists(MODELSPATH . $_final_class) || file_exists(VIEWSPATH . $_final_class))
         {
             require_once($_final_class);
             return TRUE;
