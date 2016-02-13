@@ -1,19 +1,49 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: computer
- * Date: 12.02.16
- * Time: 17:48
+ * Square Class
+ *
+ * @author Kondratenko Alexander (Xander)
  */
 
 namespace object;
 
 class Square extends Object
 {
-    public $perimeter = 10;
+    /**
+     * Special Square param
+     * @var int
+     */
+    public $perimeter = 1000;
 
-    public function draw()
+    private $padding = 10;
+
+    public function draw($data)
     {
-        // TODO: Implement draw() method.
+        $img = $this->prepare_image($data);
+
+        // draw filled rectangle first
+        if (!empty($data['fill_color']))
+        {
+            imagefilledrectangle(
+                $img,
+                $this->padding,
+                $this->padding,
+                $data['perimeter'] / 4,
+                $data['perimeter'] / 4,
+                $this->get_line_color($img, $data['fill_color'])
+            );
+        }
+
+        // draw 'borders'
+        ImageRectangle(
+            $img,
+            $this->padding,
+            $this->padding,
+            $data['perimeter'] / 4,
+            $data['perimeter'] / 4,
+            $this->get_line_color($img, $data['line_color'])
+        );
+
+        $this->_draw($img);
     }
 }

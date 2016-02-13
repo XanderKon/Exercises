@@ -1,14 +1,13 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: xander
- * Date: 12.02.16
- * Time: 0:11
+ * Base model Class
+ *
+ * @author Kondratenko Alexander (Xander)
  */
 
 namespace models;
 
-abstract class Model
+class Model
 {
     public function __construct()
     {

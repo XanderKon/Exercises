@@ -27,9 +27,9 @@ class Route extends sys_controllers\Controller
     {
         self::$url = $_SERVER['REQUEST_URI'];
 
-        if (!empty($params = parse_url(self::$url)['query']))
+        if (!empty(parse_url(self::$url)['query']))
         {
-            parse_str($params, self::$params);
+            parse_str(parse_url(self::$url)['query'], self::$params);
         }
 
         // parse url
@@ -59,7 +59,7 @@ class Route extends sys_controllers\Controller
      *
      * return mixed
      */
-    static function init()
+    public static function init()
     {
         self::define_vars();
 

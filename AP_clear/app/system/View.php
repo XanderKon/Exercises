@@ -8,10 +8,12 @@ namespace views;
 
 class View
 {
-    public $content;
+    function __construct()
+    {
+    }
 
     /**
-     * Render indicates template & add variables
+     * Render indicates template by some layout
      *
      * @param string $view
      * @param array  $data
@@ -19,21 +21,32 @@ class View
      *
      * @author Kondratenko Alexander (Xander)
      */
-    function render($view, $data = array(), $layout = 'main.tpl')
+    public function render($view, $data = array(), $layout = 'main.tpl')
     {
         if (is_array($data) && !empty($data))
         {
+            // add GET and POST variables
+            if (!empty($_GET))
+            {
+                $data['get'] = $_GET;
+            }
+
+            if (!empty($_POST))
+            {
+                $data['post'] = $_POST;
+            }
+
             extract($data);
         }
 
-        if (file_exists(VIEWSPATH . $view . '.php'))
+        if (file_exists(VIEWSPATH . $view . '.php') && file_exists(LAYOUTSPATH . $layout . '.php'))
         {
             ob_start();
             include VIEWSPATH . $view . '.php';
-            $this->content = ob_get_contents();
+            $_data['content'] = ob_get_contents();
             ob_end_clean();
 
-            extract($content['content'] = $this->content);
+            extract($_data);
 
             include LAYOUTSPATH . $layout . '.php';
         }
