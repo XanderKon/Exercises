@@ -2,6 +2,7 @@
 ### Laravel template
 /bootstrap/compiled.php
 /vendor
+/node_modules
 /.idea
 .env.*.php
 .env.php
