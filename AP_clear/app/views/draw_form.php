@@ -12,8 +12,12 @@
                 <?php endforeach; ?>
             </select>
         </td>
-    </tr>
+    </tr><br />
+
     <!-- Figure params -->
+    <tr>
+        <td colspan="2"><h2>Figure params</h2></td>
+    </tr>
     <?php if (!empty($params)): ?>
         <?php foreach($params as $key => $param): ?>
             <tr>
