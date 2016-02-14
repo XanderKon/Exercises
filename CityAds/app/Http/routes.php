@@ -16,6 +16,7 @@ Route::get('/', ['uses' =>'Home@index']);
 
 // Routing to reading file
 Route::get('/file', ['uses' =>'FileLog@index']);
+Route::get('/file/start', ['uses' =>'FileLog@start']);
 
 /*
 |--------------------------------------------------------------------------
