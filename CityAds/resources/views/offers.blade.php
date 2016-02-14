@@ -26,7 +26,7 @@
 </table>
 
 
-<h2>Offers' table</h2>
+<h2>Offers</h2>
 <table class="styled">
     <thead>
     <tr>
