@@ -8,7 +8,7 @@ class FileLogs extends Model
 {
     public $timestamps = FALSE;
 
-    const rules = array(
+    public static $rules = array(
         'transaction_id' => 'unique:file_logs,transaction_id'
     );
 
