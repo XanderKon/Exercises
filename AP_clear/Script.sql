@@ -12,6 +12,7 @@ INSERT INTO `ticks` (symbol, `date`, `value`) VALUES ('AUDUSD', '2016-02-12 07:0
 INSERT INTO `ticks` (symbol, `date`, `value`) VALUES ('EURUSD', '2016-02-14 09:19:32', 1.44), ('NZDUSD', '2016-02-14 19:19:32', 0.89);
 INSERT INTO `ticks` (symbol, `date`, `value`) VALUES ('EURUSD', '2016-09-13 14:22:02', 1.65), ('NZDUSD', '2016-08-30 05:22:31', 0.92);
 
+-- First query
 SELECT t.symbol, t.`value` FROM ticks t
 INNER JOIN (
   SELECT t.symbol, max(date) as max_date FROM ticks t
@@ -19,6 +20,7 @@ INNER JOIN (
 ) s ON t.`date` = s.max_date AND t.symbol = s.symbol
 GROUP BY t.symbol;
 
+-- Second query
 SELECT t.symbol, t.`value` FROM ticks t WHERE (t.symbol, t.date) in
 ( SELECT t.symbol, max(t.date) as max_date FROM ticks t
   GROUP BY t.symbol
