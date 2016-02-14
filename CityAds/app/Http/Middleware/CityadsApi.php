@@ -40,8 +40,8 @@ class CityadsApi
 
         foreach ($off->data->items->item as $offer) {
             $offers[] = array(
-                'name' => (string)$offer->name,
-                'site' => (string)$offer->site,
+                'name'   => (string)$offer->name,
+                'site'   => (string)$offer->site,
                 'rating' => (string)$offer->rating
             );
         }

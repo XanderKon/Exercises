@@ -7,20 +7,21 @@
     <tr>
         <td>Filter by categories</td>
         <td>
-            {{ Form::select('categories', $data['categories'], $data['request']['categories'], ['placeholder' => 'Pick a category...'])}}
+            {{ Form::select('categories', $data['categories'], @$data['request']['categories'], ['placeholder' => 'Pick a category...'])}}
         </td>
     </tr>
     <tr>
         <td>Sort by</td>
         <td>
-            {{ Form::select('sort', $data['sort'], $data['request']['sort'], ['placeholder' => 'Pick a sort type...'])}}
+            {{ Form::select('sort', $data['sort'], @$data['request']['sort'], ['placeholder' => 'Pick a sort...'])}}
+            {{ Form::select('sort_type', array('asc' => 'asc', 'desc' => 'desc'), @$data['request']['sort_type'] ?: 'asc')}}
         </td>
     </tr>
     <tr>
         <td></td>
-        <td><input type="submit" title="Apply"></td>
+        <td><input type="submit" value="Apply"></td>
     </tr>
-    <input type="hidden" name="start" value="{{$data['request']['start']}}">
+    <input type="hidden" name="start" value="{{@$data['request']['start']}}">
 </form>
 </table>
 
@@ -38,7 +39,7 @@
         @foreach ($data['offers'] as $offers)
         <tr>
             <td>{{$offers['name']}}</td>
-            <td>{{$offers['site']}}</td>
+            <td>{{ Html::link($offers['site'], NULL, array('target' => '_blank')) }}</td>
             <td>{{$offers['rating']}}</td>
         </tr>
         @endforeach
