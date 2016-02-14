@@ -1,0 +1,28 @@
+body {
+  font-size: 1em;
+  font-family: Arial;
+}
+
+table.styled {
+  width: 100%;
+}
+
+table.styled, table.styled th, table.styled td {
+  border: 1px solid #c0c0c0;
+}
+
+table td {
+  padding: 0 10px;
+}
+
+.paginator {
+  margin-top: 15px;
+}
+
+.paginator a {
+  padding: 10px;
+}
+
+.container {
+  /*text-align: center;*/
+}

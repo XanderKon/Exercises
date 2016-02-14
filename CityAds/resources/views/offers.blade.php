@@ -1,3 +1,7 @@
+@extends('layouts.master')
+@section('content')
+
+<h2>Filters & Sorting</h2>
 <table>
 <form action="">
     <tr>
@@ -21,8 +25,8 @@
 </table>
 
 
-<h1>Offers' table</h1>
-<table>
+<h2>Offers' table</h2>
+<table class="styled">
     <thead>
     <tr>
         <th>Offer</th>
@@ -44,6 +48,7 @@
 <div class="paginator">
 {!! $data['paginator'] !!}
 </div>
+@stop
 
 
 

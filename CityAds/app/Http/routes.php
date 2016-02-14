@@ -11,7 +11,11 @@
 |
 */
 
+// Routing to test API
 Route::get('/', ['uses' =>'Home@index']);
+
+// Routing to reading file
+Route::get('/file', ['uses' =>'FileLog@index']);
 
 /*
 |--------------------------------------------------------------------------

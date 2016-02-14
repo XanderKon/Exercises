@@ -1,2 +1,16 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+.container {
+  font-size: 1em;
+  font-family: Arial;
+
+  a {
+    font: {
+      weight: bold;
+      family: serif;
+    }
+    &:hover {
+      background-color: #eee;
+    }
+  }
+}

@@ -48,12 +48,12 @@ class Home extends Controller
         if ($_request['start'] >= 1)
         {
             $_request['start'] -= 1;
-            $previous = '<a href="/?' . http_build_query($_request) .'" >Previous<a>';
+            $previous = '<a href="/?' . http_build_query($_request) .'" >< Previous<a>';
             $_request['start'] += 1;
         }
 
         $_request['start'] += 1;
-        $next = '<a href="/?' . http_build_query($_request) .'" >Next<a>';
+        $next = '<a href="/?' . http_build_query($_request) .'" >Next ><a>';
         $_request['start'] -= 1;
 
         $paginator = $previous . "&nbsp;" . $next;
