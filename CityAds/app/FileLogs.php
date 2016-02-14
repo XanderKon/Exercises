@@ -58,7 +58,7 @@ class FileLogs extends Model
      */
     public static function validate($data)
     {
-        $v = \Validator::make($data, self::rules);
+        $v = \Validator::make($data, self::$rules);
 
         return $v->passes();
     }
