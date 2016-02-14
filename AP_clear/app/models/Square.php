@@ -46,4 +46,9 @@ class Square extends Object
 
         $this->_draw($img);
     }
+
+    public function draw3d($data)
+    {
+        // TODO: Implement draw3d() method.
+    }
 }

@@ -183,6 +183,19 @@ abstract class Object extends Model
      * Draw the object
      *
      * @return mixed
+     *
+     * @author Kondratenko Alexander (Xander)
      */
     abstract public function draw($data);
+
+    /**
+     * Draw the object on 3D
+     *
+     * @param $data
+     *
+     * @return mixed
+     *
+     * @author Kondratenko Alexander (Xander)
+     */
+    abstract public function draw3d($data);
 }
